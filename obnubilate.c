@@ -18,8 +18,8 @@ struct packet_type net_if_proto;
 void decrypt(char *buf, u8 *key)
 {
     struct crypto_cipher *tfm;
-    int i, count, div, mod;
-    char dst[AES_BLOCK_SIZE];
+    int    i, count, div, mod;
+    char  dst[AES_BLOCK_SIZE];
 
     div = strlen(buf) / AES_BLOCK_SIZE;
     mod = strlen(buf) % AES_BLOCK_SIZE;
@@ -40,10 +40,10 @@ void decrypt(char *buf, u8 *key)
 
 void process_packet(struct sk_buff *skb)
 {
-    struct ethhdr        *eth;
-    struct iphdr         *iph;
-    struct tcphdr        *tph;
-    unsigned char        *data;
+    struct ethhdr      *eth;
+    struct iphdr       *iph;
+    struct tcphdr      *tph;
+    unsigned char     *data;
     int src_port, dest_port;
     eth = eth_hdr(skb);
     iph = ip_hdr(skb);
@@ -78,7 +78,7 @@ int packet_func(struct sk_buff *skb, struct net_device *dev,
 
 int init_module(void)
 {
-    net_if_proto.dev =  NULL;
+    net_if_proto.dev  =  NULL;
     net_if_proto.type = htons(ETH_P_ALL);
     net_if_proto.func = packet_func;
     dev_add_pack(&net_if_proto);
