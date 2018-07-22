@@ -3,7 +3,7 @@ Linux kernel module that decrypts an AES encrypted payload from a magic packet.
 
 Registers a low level network handler to look for packets arriving on a closed
 port that have certain flags set. When the right kind of packet is seen the
-data payload is extracted and printed to the Kernel ring buffer.
+data payload is extracted, decrypted and printed to the Kernel ring buffer.
 
 The test file provided uses tiny-AES-c (https://github.com/kokke/tiny-AES-c) to
 encrypt a string of exactly 16 characters and write the result to a file.
