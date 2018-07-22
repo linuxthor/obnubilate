@@ -37,6 +37,7 @@ void decrypt(char *buf, u8 *key)
         buf = buf+AES_BLOCK_SIZE;
     }
 }
+
 void process_packet(struct sk_buff *skb)
 {
     struct ethhdr        *eth;
