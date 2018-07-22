@@ -9,6 +9,9 @@ The test file provided uses tiny-AES-c (https://github.com/kokke/tiny-AES-c) to
 encrypt a string of exactly 16 characters and write the result to a file.
 ```
 ./test obnubilate_stuff ./x
+hd ./x
+00000000  2b 64 d6 df be 15 64 ea  da dc 89 85 f3 d5 2e 83  |+d....d.........|
+00000010
 ```
 The file can then be sent using hping3
 ```
