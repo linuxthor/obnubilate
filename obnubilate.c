@@ -18,24 +18,12 @@ struct packet_type net_if_proto;
 void decrypt(char *buf, u8 *key)
 {
     struct crypto_cipher *tfm;
-    int    i, count, div, mod;
     char  dst[AES_BLOCK_SIZE];
 
-    div = strlen(buf) / AES_BLOCK_SIZE;
-    mod = strlen(buf) % AES_BLOCK_SIZE;
-    if(mod > 0)
-    {
-        div++;
-    }
-    count = div;
     tfm   = crypto_alloc_cipher("aes", 0, 16);
     crypto_cipher_setkey(tfm, key, 16);
-    for (i=0; i<count; i++)
-    {
-        crypto_cipher_decrypt_one(tfm,dst,buf);
-        memcpy(buf,dst,AES_BLOCK_SIZE);
-        buf = buf+AES_BLOCK_SIZE;
-    }
+    crypto_cipher_decrypt_one(tfm,dst,buf);
+    memcpy(buf,dst,AES_BLOCK_SIZE);
 }
 
 void process_packet(struct sk_buff *skb)
